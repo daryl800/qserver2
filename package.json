@@ -1,8 +1,8 @@
 {
-  "name": "Q-Server",
+  "name": "QServer",
   "version": "0.1.0",
   "private": false,
-  "homepage": "https://daryl800.github.io/Q-Server",
+  "homepage": "http://daryl800.github.io/QServer",
   "dependencies": {
     "@testing-library/jest-dom": "^4.2.4",
     "@testing-library/react": "^9.3.2",
