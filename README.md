@@ -1,5 +1,5 @@
-# Simple N-Puzzle
-Simple N-Puzzle game withReact
+# Queue Server
+Queue Server with React
 
 #### Start server
 ```sh
