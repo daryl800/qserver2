@@ -8,78 +8,12 @@
   text-align: center;
   cursor: pointer;
   margin: 1px 2px 2px 1px;
-  // box-shadow: rgba(0,0,0,0.2) 0 1px 2px 0;
-  // box-shadow: rgba(0, 0, 0, 0.12) 0px 1px 6px, rgba(0, 0, 0, 0.12) 0px 1px 4px;
+  box-shadow: rgba(0, 0, 0, 0.5) 0px 1px 6px;
   color: #333;
   background: #ccc;
   border-radius: 0px;
-  &.zero {
-    opacity: 0;
-  }
-  // &.right {
-  //     background: #C5E1A5;
-  //     border-color: #43A047;
-  // }
-}
-
-@for $i from 10 through 300 {
-  .square-#{$i} {
-    width: #{$i * 3}px;
-    height: #{$i}px;
-    line-height: #{$i}px;
-  }
-}
-
-@for $i from 10 through 40 {
-  .square-#{$i} {
-    font-size: 13px;
-  }
-}
-
-@for $i from 41 through 60 {
-  .square-#{$i} {
-    font-size: 1em;
-  }
-}
-
-@for $i from 61 through 80 {
-  .square-#{$i} {
-    font-size: 1.4em;
-  }
-}
-
-@for $i from 81 through 110 {
-  .square-#{$i} {
-    font-size: 1.6em;
-  }
-}
-
-@for $i from 111 through 140 {
-  .square-#{$i} {
-    font-size: 1.7em;
-  }
-}
-
-@for $i from 141 through 180 {
-  .square-#{$i} {
-    font-size: 1.8em;
-  }
-}
-
-@for $i from 181 through 220 {
-  .square-#{$i} {
-    font-size: 2em;
-  }
-}
-
-@for $i from 221 through 260 {
-  .square-#{$i} {
-    font-size: 2.5em;
-  }
-}
-
-@for $i from 261 through 300 {
-  .square-#{$i} {
-    font-size: 3em;
-  }
+  font-size: 20px;
+  width: 180px;
+  height: 80px;
+  line-height: 80px;
 }
