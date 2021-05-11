@@ -6,8 +6,11 @@ class Cell extends React.Component {
     render() {
         const { value, clickHandler } = this.props;
 
+        let cls = value === 'X' ? `square-1` : `square-2`;
+        console.log("cls: " + cls);
+
         return (
-            <span className="square" onClick={() => { clickHandler() }}>{value}</span>
+            <span className={cls} onClick={() => { clickHandler() }}>{value}</span>
         );
     }
 }

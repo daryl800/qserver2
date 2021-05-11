@@ -115,8 +115,8 @@ class Queue extends React.Component {
         return (
             <div className='queue'>
                 <div className='displayBox'>
-                    <p>Currently serving:</p>
-                    <h3> {this.props.queue} {this.state.servingQNum}</h3>
+                    <p>Currently serving: <strong> {this.props.queue}{this.state.servingQNum} </strong></p>
+                    <p>Last in queue: <strong> {this.props.queue}{this.state.lastQNum} </strong></p>
                 </div>
                 <div className="queue-body">
                     <Board
