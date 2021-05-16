@@ -3,12 +3,12 @@ import Cell from '../Cell';
 
 class Board extends React.Component {
     //     componentDidMount() {
-    //  //       this.findClickables(this.props.board, this.props.size);
+    //         this.findClickables(this.props.board, this.props.size);
     //         document.body.addEventListener('keydown', (event) => {this.handleKeyPress(event)});
     //     }
 
     //     componentWillReceiveProps(nextProps) {
-    //  //       this.findClickables(nextProps.board, nextProps.size);
+    //         this.findClickables(nextProps.board, nextProps.size);
     //     }
 
     //     componentWillUnmount() {

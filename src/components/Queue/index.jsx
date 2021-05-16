@@ -16,8 +16,13 @@ class Queue extends React.Component {
     }
 
     componentDidMount() {
-        this.updateQueue("queue_" + this.props.queue)
+        this.updateQueue("queue_" + this.props.queue);
     }
+
+    // shouldComponentUpdate() {
+    //     console.log("shouldComponentUpdate");
+    //     this.updateQueue("queue_" + this.props.queue);
+    // }
 
     addToQueue(i, rear_num_from_firebase, serving_num_from_firebase) {
         console.log("add to Queue");
@@ -45,18 +50,23 @@ class Queue extends React.Component {
                 console.log('lastQNum: (local)', this.state.lastQNum);
 
                 if (this.state.lastQNum == 0) {  // Local UI is not set (i.e. page is empty before loaded from firebase.)
+                    console.log("A ...");
                     for (let i = 1; i <= rear_num_from_firebase; i++) {
                         if (i <= serving_num_from_firebase) { this.addToQueue('X', rear_num_from_firebase, serving_num_from_firebase); }  // put 'X' to cell which has been served
                         else { this.addToQueue(this.props.queue + i, rear_num_from_firebase, serving_num_from_firebase); }
                     }
                     //   this.setState({ lastQNum: rear_num_from_firebase });
-                }
-                else if (rear_num_from_firebase > this.state.lastQNum) {  // Add to queue when new ticket is added to Q in firebase
+                } else if (rear_num_from_firebase == 1 && serving_num_from_firebase == 0) { // Reset button pressed
+                    console.log("B ...");
+                    this.setState({ board: [], lastQNum: 0 });  // need to trigger to reload the queue on UI
+                } else if (rear_num_from_firebase > this.state.lastQNum) {  // Add to queue when new ticket is added to Q in firebase
+                    console.log("C ...");
                     console.log("rear_num_from_firebase: " + rear_num_from_firebase);
                     console.log("lastQNum: " + this.state.lastQNum);
                     this.addToQueue(this.props.queue + rear_num_from_firebase, rear_num_from_firebase, serving_num_from_firebase);
                     //    this.setState({ lastQNum: rear_num_from_firebase });
-                } else if (serving_num_from_firebase > this.state.servingQNum) {
+                } else if (serving_num_from_firebase > this.state.servingQNum) {  // Advance Serving queue number
+                    console.log("D ...");
                     this.updateServingQNum(serving_num_from_firebase);
                 }
                 //                this.setState({ servingQNum: serving_num_from_firebase })
@@ -96,7 +106,7 @@ class Queue extends React.Component {
         //        this.fetchData();
     }
 
-    reset() {  // Update firebase when clearing the queue (on webpage)
+    reset() {  // Update firebase when reset button in pressed (on webpage)
         db.collection("SweeCafe").doc('queue_' + this.props.queue).set({
             serving_no: 0,
             rear_no: 1
@@ -107,7 +117,7 @@ class Queue extends React.Component {
             .catch(function (error) {
                 console.error("Error writing document: ", error);
             });
-        this.setState({ board: [], lastQNum: 0 });
+        // this.setState({ board: [], lastQNum: 0 });
     }
 
     render() {

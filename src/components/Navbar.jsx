@@ -12,9 +12,9 @@ export default class Navbar extends Component {
         <div className="nav-content">
           <img
             src={logo}
-              className="nav-logo"
-              alt="Logo"
-              onClick={this.scrollToTop}
+            className="nav-logo"
+            alt="Logo"
+            onClick={this.scrollToTop}
           />
           <h2>QServer</h2>
         </div>
