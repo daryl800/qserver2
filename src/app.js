@@ -7,7 +7,7 @@ import Container from 'react-bootstrap/Container';
 import Col from 'react-bootstrap/Col';
 import Row from 'react-bootstrap/Row';
 
-import FireStore from "./FireStore";
+// import FireStore from "./FireStore";
 
 class App extends Component {
     render() {

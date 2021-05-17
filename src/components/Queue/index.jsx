@@ -49,14 +49,14 @@ class Queue extends React.Component {
                 console.log('servingQNum: (local)', this.state.servingQNum);
                 console.log('lastQNum: (local)', this.state.lastQNum);
 
-                if (this.state.lastQNum == 0) {  // Local UI is not set (i.e. page is empty before loaded from firebase.)
+                if (this.state.lastQNum === 0) {  // Local UI is not set (i.e. page is empty before loaded from firebase.)
                     console.log("A ...");
                     for (let i = 1; i <= rear_num_from_firebase; i++) {
                         if (i <= serving_num_from_firebase) { this.addToQueue('X', rear_num_from_firebase, serving_num_from_firebase); }  // put 'X' to cell which has been served
                         else { this.addToQueue(this.props.queue + i, rear_num_from_firebase, serving_num_from_firebase); }
                     }
                     //   this.setState({ lastQNum: rear_num_from_firebase });
-                } else if (rear_num_from_firebase == 1 && serving_num_from_firebase == 0) { // Reset button pressed
+                } else if (rear_num_from_firebase === 1 && serving_num_from_firebase === 0) { // Reset button pressed
                     console.log("B ...");
                     this.setState({ board: [], lastQNum: 0 });  // need to trigger to reload the queue on UI
                 } else if (rear_num_from_firebase > this.state.lastQNum) {  // Add to queue when new ticket is added to Q in firebase
@@ -107,6 +107,7 @@ class Queue extends React.Component {
     }
 
     reset() {  // Update firebase when reset button in pressed (on webpage)
+        // Reset queue collection values to 0 
         db.collection("SweeCafe").doc('queue_' + this.props.queue).set({
             serving_no: 0,
             rear_no: 1
@@ -117,7 +118,16 @@ class Queue extends React.Component {
             .catch(function (error) {
                 console.error("Error writing document: ", error);
             });
-        // this.setState({ board: [], lastQNum: 0 });
+
+        //  Delete all documents in the LiveQueues collection   
+        let deleteAtPath = "SweeCafe/queue_" + this.props.queue + "/LiveQueues";
+        db.collection(deleteAtPath)
+            .get()
+            .then(res => {
+                res.forEach(element => {
+                    element.ref.delete();
+                });
+            });
     }
 
     render() {
